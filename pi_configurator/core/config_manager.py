@@ -9,6 +9,14 @@ import json
 from typing import Dict, Any, List
 import logging
 
+# Check for optional dependencies
+try:
+    import yaml as pyyaml
+    HAS_PYYAML = True
+except ImportError:
+    HAS_PYYAML = False
+    pyyaml = None
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

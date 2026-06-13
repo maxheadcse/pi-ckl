@@ -12,7 +12,8 @@ __all__ = [
     'InteractiveHandler',
     'TUIHandler',
     'SimpleTUIHandler',
-    'ProviderManager'
+    'ProviderManager',
+    'DependencyManager'
 ]
 
 # Import core components
@@ -21,3 +22,4 @@ from .tui.interactive_handler import InteractiveHandler
 from .tui.tui_handler import TUIHandler
 from .tui.simple_tui_handler import SimpleTUIHandler
 from .providers.provider_manager import ProviderManager
+from .utils.dependencies import DependencyManager

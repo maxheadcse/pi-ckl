@@ -25,6 +25,9 @@ __license__ = "MIT"
 def main():
     """Main entry point for the application."""
     try:
+        # Check dependencies
+        from pi_configurator.utils.dependencies import DependencyManager
+        DependencyManager.check_and_warn()
         parser = argparse.ArgumentParser(
             description="Pi-Ckl - Configuration Tool for Pi Coding Agent",
             formatter_class=argparse.RawDescriptionHelpFormatter
