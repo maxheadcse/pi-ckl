@@ -19,7 +19,7 @@ from pi_configurator.tui.simple_tui_handler import SimpleTUIHandler
 from pi_configurator.tui.modern_tui import ModernTUIHandler
 
 __version__ = "1.0.0"
-__author__ = "Pi Coding Agent Team"
+__author__ = "Pi-Ckl Team"
 __license__ = "MIT"
 
 def main():

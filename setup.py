@@ -18,8 +18,8 @@ with open('README.md', 'r', encoding='utf-8') as f:
 setup(
     name='pi-ckl',
     version='1.0.0',
-    author='Pi Coding Agent Team',
-    author_email='support@pi-coding-agent.com',
+    author='Pi-Ckl Team',
+    author_email='support@pi-ckl.com',
     description='A robust, menu-driven and CLI-capable configuration tool for the Pi Coding Agent',
     long_description=long_description,
     long_description_content_type='text/markdown',

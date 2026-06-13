@@ -289,4 +289,4 @@ python main.py --default-bedrock-tier spot
 
 MIT License
 
-© 2026 Pi Coding Agent Team
+© 2026 Pi-Ckl Team

@@ -5,7 +5,7 @@ A robust, modular configuration tool for the Pi Coding Agent.
 """
 
 __version__ = "1.0.0"
-__author__ = "Pi Configurator Team"
+__author__ = "Pi-Ckl Team"
 __license__ = "MIT"
 __all__ = [
     'ConfigManager',
