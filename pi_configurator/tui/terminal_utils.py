@@ -49,51 +49,61 @@ class TerminalInput:
         return None
 
 def get_user_choice(max_option: int, prompt: str = "Select option: ") -> str:
-    """Get user choice with arrow key navigation."""
-    print(prompt, end='', flush=True)
-    
-    choice = ''
-    with TerminalInput() as term_input:
-        while True:
-            key = term_input.get_key()
-            
-            if key is None:
-                continue
-            
-            # Handle arrow keys
-            elif key == '\x1b[A':  # Up arrow
-                print('↑', end='', flush=True)
-                return 'UP'
-            elif key == '\x1b[B':  # Down arrow
-                print('↓', end='', flush=True)
-                return 'DOWN'
-            
-            # Handle Enter
-            elif key == '\r' or key == '\n':
-                print()
-                return choice
-            
-            # Handle Backspace
-            elif key == '\x7f' or key == '\x08':
-                if choice:
-                    choice = choice[:-1]
-                    print('\b \b', end='', flush=True)
-            
-            # Handle regular characters
-            elif key.isdigit() or key.lower() in ['q', '?', 'h']:
-                print(key, end='', flush=True)
-                choice += key
-            
-            # Ignore other keys
+    """Get user choice with basic input handling."""
+    try:
+        # Try enhanced input with arrow key support
+        print(prompt, end='', flush=True)
+        
+        choice = ''
+        with TerminalInput() as term_input:
+            while True:
+                key = term_input.get_key()
+                
+                if key is None:
+                    continue
+                
+                # Handle arrow keys
+                elif key == '\x1b[A':  # Up arrow
+                    print('↑', end='', flush=True)
+                    return 'UP'
+                elif key == '\x1b[B':  # Down arrow
+                    print('↓', end='', flush=True)
+                    return 'DOWN'
+                
+                # Handle Enter
+                elif key == '\r' or key == '\n':
+                    print()
+                    return choice
+                
+                # Handle Backspace
+                elif key == '\x7f' or key == '\x08':
+                    if choice:
+                        choice = choice[:-1]
+                        print('\b \b', end='', flush=True)
+                
+                # Handle regular characters
+                elif key.isdigit() or key.lower() in ['q', '?', 'h']:
+                    print(key, end='', flush=True)
+                    choice += key
+                
+                # Ignore other keys
+                
+    except (termios.error, AttributeError):
+        # Fallback to simple input if terminal doesn't support raw mode
+        return input(prompt).strip()
 
 if __name__ == "__main__":
     # Test the terminal input
     print("Testing terminal input (press q to quit):")
-    with TerminalInput() as term_input:
-        while True:
-            key = term_input.get_key()
-            if key:
-                if key == 'q':
-                    print("\nQuitting...")
-                    break
-                print(f"Got: {repr(key)}")
+    try:
+        with TerminalInput() as term_input:
+            while True:
+                key = term_input.get_key()
+                if key:
+                    if key == 'q':
+                        print("\nQuitting...")
+                        break
+                    print(f"Got: {repr(key)}")
+    except Exception as e:
+        print(f"Terminal raw mode not supported: {e}")
+        print("Falling back to simple input")
