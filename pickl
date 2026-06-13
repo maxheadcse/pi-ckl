@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+"""
+Pi-Ckl - Main Executable
+
+A robust configuration tool for the Pi Coding Agent.
+"""
+
+import sys
+import os
+
+# Add project to path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from pi_configurator.core.config_manager import ConfigManager
+from pi_configurator.tui.simple_tui_handler import SimpleTUIHandler
+
+def main():
+    """Main entry point."""
+    try:
+        config_manager = ConfigManager()
+        
+        # Check if any arguments provided
+        if len(sys.argv) > 1:
+            # Handle CLI arguments
+            if "--version" in sys.argv or "-v" in sys.argv:
+                print("Pi-Ckl v1.0.0")
+                return
+            elif "--help" in sys.argv or "-h" in sys.argv:
+                print("Pi-Ckl - Configuration Tool for Pi Coding Agent")
+                print("Usage: pickl [OPTIONS]")
+                print("  --version, -v    Show version")
+                print("  --help, -h       Show help")
+                print("  --interactive    Start interactive mode")
+                return
+            elif "--interactive" in sys.argv or "-i" in sys.argv:
+                # Start interactive mode
+                handler = SimpleTUIHandler(config_manager)
+                handler.run()
+                return
+        
+        # Default: show help
+        print("Pi-Ckl - Configuration Tool for Pi Coding Agent")
+        print("Usage: pickl [OPTIONS]")
+        print("  --version, -v    Show version")
+        print("  --help, -h       Show help")
+        print("  --interactive    Start interactive mode")
+        
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#!/usr/bin/env bash
+
 # Pi-Ckl - Configuration Tool for Pi Coding Agent
 # A robust, menu-driven and CLI-capable configuration tool
 
@@ -123,8 +125,8 @@ if [[ -n "$SETTINGS_FILE" ]]; then
     PYTHON_ARGS+=("--settings" "$SETTINGS_FILE")
 fi
 
-# Run the Python script
-python3 "$SCRIPT_DIR/main.py" "${PYTHON_ARGS[@]}" "$@"
+# Run the pickl executable
+"$SCRIPT_DIR/pickl" "${PYTHON_ARGS[@]}" "$@"
 
-# Exit with the same status as the Python script
+# Exit with the same status as pickl
 exit $?
