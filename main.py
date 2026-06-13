@@ -16,6 +16,7 @@ from pi_configurator.core.config_manager import ConfigManager
 from pi_configurator.tui.interactive_handler import InteractiveHandler
 from pi_configurator.tui.tui_handler import TUIHandler
 from pi_configurator.tui.simple_tui_handler import SimpleTUIHandler
+from pi_configurator.tui.modern_tui import ModernTUIHandler
 
 __version__ = "1.0.0"
 __author__ = "Pi Coding Agent Team"
@@ -82,10 +83,10 @@ def main():
                 simple_tui_handler.run()
             return
         
-        # Handle interactive mode (use simple TUI by default)
+        # Handle interactive mode (use modern TUI by default)
         if args.interactive:
-            simple_tui_handler = SimpleTUIHandler(config_manager)
-            simple_tui_handler.run()
+            modern_tui_handler = ModernTUIHandler(config_manager)
+            modern_tui_handler.run()
             return
         
         # Print help if no arguments provided
