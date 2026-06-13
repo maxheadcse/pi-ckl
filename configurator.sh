@@ -21,13 +21,21 @@ check_packages() {
     local missing_packages=0
     
     # Check for required packages (non-aggressive check)
-    for package in rich pyyaml; do
+    for package in rich; do  # Only rich is truly required
         if ! python3 -c "import $package" &> /dev/null; then
             echo "Warning: Required package '$package' not found."
             echo "For full functionality, please install it with:"
             echo "  pip install $package"
-            echo "Or use a virtual environment:"
-            echo "  python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
+            echo ""
+            missing_packages=1
+        fi
+    done
+    
+    # Check for optional packages (informational only)
+    for package in pyyaml; do
+        if ! python3 -c "import $package" &> /dev/null; then
+            echo "Info: Optional package '$package' not found."
+            echo "Some features may be enhanced with: pip install $package"
             echo ""
         fi
     done
