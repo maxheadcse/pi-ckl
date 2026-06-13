@@ -1,31 +1,182 @@
-# Node modules
-node_modules/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
 
-# Settings files (generated)
-~/.pi/agent/settings.json
-~/.pi/agent/settings.json.backup.*
-.pi/agent/settings.json
-.pi/agent/settings.json.backup.*
+# Virtual environment
+venv/
+.env/
 
-# Temporary files
-*.tmp
-*.temp
-*.bak
-
-# IDE settings
+# IDE specific
 .idea/
 .vscode/
 *.swp
 *.swo
-*~
 
-# OS files
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Configuration files
+config/*.json
+
+# Logs
+temp/
+*.log
+
+# System files
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
+# Python cache
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# MacOS
+*.DS_Store
+
+# Windows
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Emacs
+*~
+
+# Vim
+*.swp
 
 # Backup files
-backup.json
-settings_backup.json
+*.bak
+*.backup
+
+# Test files
+test_*.py
+
+# Local settings
+.local_settings.py
+
+# Database files
+*.db
+*.sqlite
+
+# Environment variables
+.env
+.env.local
+
+# Dependencies
+node_modules/
+
+# Compiled files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Documentation build
+_docs/
+
+# Cache
+.cache/
+
+# Temporary files
+temp/
+tmp/
+
+# IDE specific
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Configuration files
+config/*.json
+
+# Logs
+temp/
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Python cache
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# MacOS
+*.DS_Store
+
+# Windows
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Emacs
+*~
+
+# Vim
+*.swp
+
+# Backup files
+*.bak
+*.backup
+
+# Test files
+test_*.py
+
+# Local settings
+.local_settings.py
+
+# Database files
+*.db
+*.sqlite
+
+# Environment variables
+.env
+.env.local
+
+# Dependencies
+node_modules/
+
+# Compiled files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Documentation build
+_docs/
+
+# Cache
+.cache/
+
+# Temporary files
+temp/
+tmp/

@@ -1,0 +1,40 @@
+# Development dependencies for Pi Coding Agent Configuration Tool
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Linting and formatting
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0
+pylint>=3.0.0
+
+# Documentation
+typing-extensions>=4.0.0
+
+# Build and packaging
+setuptools>=65.0.0
+wheel>=0.40.0
+twine>=4.0.0
+
+# Type checking
+types-PyYAML>=6.0.0
+
+# Development tools
+ipython>=8.0.0
+jupyter>=1.0.0
+
+# Code quality
+bandit>=1.7.0
+safety>=2.0.0
+
+# Documentation generation
+mkdocs>=1.4.0
+mkdocs-material>=9.0.0
+
+# Version management
+bump2version>=1.0.0
+
+# Environment management
+python-dotenv>=1.0.0

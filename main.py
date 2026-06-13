@@ -13,58 +13,76 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Import modular components
 from config.core import ConfigManager
-from config.cli import CLIHandler
 from config.interactive import InteractiveHandler
+
+__version__ = "1.0.0"
+__author__ = "Pi Coding Agent Team"
+__license__ = "MIT"
 
 def main():
     """Main entry point for the application."""
-    parser = argparse.ArgumentParser(
-        description="Pi Coding Agent Configuration Tool",
-        formatter_class=argparse.RawDescriptionHelpFormatter
-    )
-    
-    # Add arguments
-    parser.add_argument("-i", "--interactive", action="store_true",
-                       help="Run interactive menu-driven configuration")
-    parser.add_argument("-c", "--config-dir", type=str,
-                       help="Override config directory (default: ~/.pi/agent)")
-    parser.add_argument("--list", action="store_true",
-                       help="List all available settings and their values")
-    parser.add_argument("--default-bedrock-tier", type=str,
-                       help="AWS Bedrock pricing tier: flex, standard, spot")
-    parser.add_argument("--list-models", action="store_true",
-                       help="List all available models for the current provider")
-
-    
-    args = parser.parse_args()
-    
-    # Initialize config manager
-    config_manager = ConfigManager(args.config_dir)
-    
-    # Handle --list option
-    if args.list:
-        config_manager.list_settings()
-        return
-    
-    # Handle --list-models option
-    if args.list_models:
-        config_manager.list_available_models()
-        return
-    
-    # Handle --default-bedrock-tier option
-    if args.default_bedrock_tier:
-        config_manager.set_bedrock_tier(args.default_bedrock_tier)
-        return
-    
-    # Handle interactive mode
-    if args.interactive:
-        interactive_handler = InteractiveHandler(config_manager)
-        interactive_handler.run()
-        return
-    
-    # Print help if no arguments provided
-    if len(sys.argv) == 1:
-        parser.print_help()
+    try:
+        parser = argparse.ArgumentParser(
+            description="Pi Coding Agent Configuration Tool",
+            formatter_class=argparse.RawDescriptionHelpFormatter
+        )
+        
+        # Add arguments
+        parser.add_argument("-i", "--interactive", action="store_true",
+                           help="Run interactive menu-driven configuration")
+        parser.add_argument("-c", "--config-dir", type=str,
+                           help="Override config directory (default: ~/.pi/agent)")
+        parser.add_argument("--list", action="store_true",
+                           help="List all available settings and their values")
+        parser.add_argument("--default-bedrock-tier", type=str,
+                           help="AWS Bedrock pricing tier: flex, standard, spot")
+        parser.add_argument("--list-models", action="store_true",
+                           help="List all available models for the current provider")
+        parser.add_argument("--version", action="version",
+                           version=f"Pi Coding Agent Configuration Tool v{__version__}",
+                           help="Show version information and exit")
+        
+        args = parser.parse_args()
+        
+        # Initialize config manager
+        config_manager = ConfigManager(args.config_dir)
+        
+        # Handle --list option
+        if args.list:
+            config_manager.list_settings()
+            return
+        
+        # Handle --list-models option
+        if args.list_models:
+            config_manager.list_available_models()
+            return
+        
+        # Handle --default-bedrock-tier option
+        if args.default_bedrock_tier:
+            config_manager.set_bedrock_tier(args.default_bedrock_tier)
+            return
+        
+        # Handle additional CLI arguments (for future expansion)
+        # These would be parsed from sys.argv if needed
+        # For now, the Makefile targets use direct configurator.sh calls
+        
+        # Handle interactive mode
+        if args.interactive:
+            interactive_handler = InteractiveHandler(config_manager)
+            interactive_handler.run()
+            return
+        
+        # Print help if no arguments provided
+        if len(sys.argv) == 1:
+            parser.print_help()
+            sys.exit(1)
+            
+    except KeyboardInterrupt:
+        print("\n\nOperation cancelled by user.")
+        sys.exit(130)
+    except Exception as e:
+        print(f"\nError: {e}")
+        print("For help, use: python3 main.py --help")
         sys.exit(1)
 
 if __name__ == "__main__":
