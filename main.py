@@ -16,6 +16,7 @@ from pi_configurator.core.config_manager import ConfigManager
 from pi_configurator.tui.interactive_handler import InteractiveHandler
 from pi_configurator.tui.tui_handler import TUIHandler
 from pi_configurator.tui.simple_tui_handler import SimpleTUIHandler
+from pi_configurator.tui.readline_tui import ReadlineTUIHandler
 
 __version__ = "1.0.0"
 __author__ = "Pi-Ckl Team"
@@ -85,10 +86,16 @@ def main():
                 simple_tui_handler.run()
             return
         
-        # Handle interactive mode (use simple TUI by default for reliability)
+        # Handle interactive mode (use readline TUI by default)
         if args.interactive:
-            simple_tui_handler = SimpleTUIHandler(config_manager)
-            simple_tui_handler.run()
+            try:
+                readline_tui_handler = ReadlineTUIHandler(config_manager)
+                readline_tui_handler.run()
+            except Exception as e:
+                print(f"Readline TUI mode failed: {e}")
+                print("Falling back to simple TUI mode...")
+                simple_tui_handler = SimpleTUIHandler(config_manager)
+                simple_tui_handler.run()
             return
         
         # Print help if no arguments provided
