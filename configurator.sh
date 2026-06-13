@@ -34,8 +34,9 @@ check_packages() {
     # Check for optional packages (informational only)
     for package in pyyaml; do
         if ! python3 -c "import $package" &> /dev/null; then
-            echo "Info: Optional package '$package' not found."
-            echo "Some features may be enhanced with: pip install $package"
+            echo "Info: Optional package '$package' not found in system Python."
+            echo "Install with: pip install --user $package"
+            echo "Or use: python3 -m pip install --user $package"
             echo ""
         else
             echo "Info: Optional package '$package' is installed and available."
