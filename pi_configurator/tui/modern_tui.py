@@ -16,8 +16,16 @@ from rich.prompt import Prompt, Confirm
 from rich.table import Table
 from rich.box import ROUNDED
 from pi_configurator.core.config_manager import ConfigManager
-import msvcrt  # For Windows
-import tty, termios  # For Unix
+
+# Conditional imports for platform-specific functionality
+try:
+    if os.name == 'nt':
+        import msvcrt
+    else:
+        import tty, termios
+        msvcrt = None
+except ImportError:
+    msvcrt = None
 
 class ModernTUI:
     """Modern Terminal User Interface using Rich."""

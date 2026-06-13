@@ -16,7 +16,6 @@ from pi_configurator.core.config_manager import ConfigManager
 from pi_configurator.tui.interactive_handler import InteractiveHandler
 from pi_configurator.tui.tui_handler import TUIHandler
 from pi_configurator.tui.simple_tui_handler import SimpleTUIHandler
-from pi_configurator.tui.modern_tui import ModernTUIHandler
 
 __version__ = "1.0.0"
 __author__ = "Pi-Ckl Team"
