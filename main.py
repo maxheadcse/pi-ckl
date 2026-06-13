@@ -11,11 +11,11 @@ import argparse
 # Add the current directory to Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-# Import modular components
-from config.core import ConfigManager
-from config.interactive import InteractiveHandler
-from config.tui import TUIHandler
-from config.simple_tui import SimpleTUIHandler
+# Import modular components from the new package structure
+from pi_configurator.core.config_manager import ConfigManager
+from pi_configurator.tui.interactive_handler import InteractiveHandler
+from pi_configurator.tui.tui_handler import TUIHandler
+from pi_configurator.tui.simple_tui_handler import SimpleTUIHandler
 
 __version__ = "1.0.0"
 __author__ = "Pi Coding Agent Team"
